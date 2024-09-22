@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canakcan.me/Rating-Component">
+    <meta property="og:title" content="CanAkcan | Rating Component">
+    <meta property="og:description" content="a Rating Component design with animation.">
+    <meta property="og:image" content="https://canakcan.me/Rating-Component/images/preview.png">
+    
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        color: white;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap");
+    </style>
+  </head>
+  <body>
+    <!-- Rating state start -->
+    <main>
+      <div class="card">
+        <div class="card-front">
+          <div class="card-top">
+            <img src="images/icon-star.svg" alt="" />
+          </div>
+          <div class="card-middle">
+            <h1>How did we do?</h1>
+            <p>
+              Please let us know how we did with your support request. All
+              feedback is appreciated to help us improve our offering!
+            </p>
+          </div>
+          <p id="warning">Please select a rating.</p>
+          <form class="card-rating" action="#">
+            <div class="rating-button-wrapper">
+              <input type="radio" name="rating" id="rate1" value="1" />
+              <label for="rate1">1</label>
+
+              <input type="radio" name="rating" id="rate2" value="2" />
+              <label for="rate2">2</label>
+
+              <input type="radio" name="rating" id="rate3" value="3" />
+              <label for="rate3">3</label>
+
+              <input type="radio" name="rating" id="rate4" value="4" />
+              <label for="rate4">4</label>
+
+              <input type="radio" name="rating" id="rate5" value="5" />
+              <label for="rate5">5</label>
+            </div>
+            <button type="submit" id="submit-button" onclick="formSubmit()">
+              SUBMIT
+            </button>
+          </form>
+        </div>
+        <div class="card-back">
+          <div class="card-back-top">
+            <img
+              class="back-image"
+              src="images/illustration-thank-you.svg"
+              alt=""
+              width="150"
+            />
+          </div>
+          <p id="rating-feedback">
+            You selected <span id="rating-text"></span> out of 5
+          </p>
+          <h1>Thank you!</h1>
+          <p>
+            We appreciate you taking the time to give a rating. If you ever need
+            more support, don't hesitate to get in touch!
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <div class="attribution" role="contentinfo">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="https://github.com/turret001">me!</a>.
+    </div>
+    <script>
+      const front = document.querySelector(".card-front");
+      const back = document.querySelector(".card-back");
+      document.getElementById("submit-button").addEventListener("click", function (event) {event.preventDefault();});
+
+      function formSubmit() {
+        //check if a rating was selected and if so, set span to the selected rating
+        if (document.querySelector('input[name="rating"]:checked') !== null) {
+          document.getElementById("rating-text").innerHTML = document.querySelector('input[name="rating"]:checked').value;
+          front.classList.add("hide");
+          setTimeout(showBack, 2000);
+        } else {
+          document.getElementById("warning").style.display = "block";
+          return
+        }
+        
+        
+      }
+      function showBack(){
+        front.style.display = "none";
+        back.style.display = "block";
+        back.classList.add("show");
+      }
+    </script>
+  </body>
+</html>
